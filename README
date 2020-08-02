@@ -1,0 +1,20 @@
+I implemented part of the whole regie system with two main logical chains:
+student-login-then see student course page-then do add/drop/swap/request operations
+faculty=login-then see faculty course page-then do add/delete/modify/give approvement operations
+
+By dependency inversion principle, student only interact with studentCoursePage and faculty only interact with facultyCoursePage,
+the these two coursePage classes, they act as the interface between student/faculty and database, so student/faculty does not have
+direct connection with database
+
+Interface segregation principle: studentCoursePage only implement functions of student and facultyCoursePage only contains behavior of a faculty,
+thus they are separated.
+
+Singleton: the databaseConnect class has only one instance and when other class need to connect to the database, they have to call that instance,
+so that the database functions cannot be modified.
+
+Command: make a command chain for the login function,inherited from loginCommand class and each command contains another command so that student/faculty only need to
+click the login button, and they can do login operation with this command chain.
+
+Mediator: studentCoursePage and facultyCoursePage are designed by mediator patter as well as under the dependency inversion principle, so that
+it's a good way to implement loose coupling for the system.
+
